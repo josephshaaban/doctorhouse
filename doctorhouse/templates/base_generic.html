@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block title %}<title>Doctor House</title>{% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'eng_desk/css/sdfl_base_style.css' %}" />
+
+    {% block js %}{% endblock %}
+    {% block css %}{% endblock %}
+
+</head>
+
+<body>
+    <div class="page-header bg-dark text-light">
+        <h2 class="page-heading">Doctor House</h2>
+        <p>
+            {% if not user.is_authenticated %}Not logged in.
+            <a class="text-info" href="/accounts/login/">Login.</a>
+            {% else %}Logged in as <b> {{ user }}.</b>
+            <a class="text-info" href="/accounts/logout/">Logout.</a>
+            {% endif %}
+        </p>
+    </div>
+
+    <div class="main-content">
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>
+
