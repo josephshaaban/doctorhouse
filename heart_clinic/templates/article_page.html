@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  <div class="row">
+      <div class="col-md-8">
+        <h3 class="pb-4 mb-4 fst-italic border-bottom">
+          {{ article.title }}
+        </h3>
+        <img src="{{ article.image.url }}" class="bd-placeholder-img mb-4" />
+        <article class="blog-post">
+                {{ article.content }}
+         </article>
+        <p class="d-flex flex-row-reverse"><strong>{{ article.date }}</strong></p>
+      </div>
+  </div>
+{% endblock %}

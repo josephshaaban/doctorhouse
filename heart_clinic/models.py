@@ -6,12 +6,10 @@ class Article(models.Model):
         max_length=100,
         null=False, blank=False,
     )
-    content = models.CharField(
-        max_length=1200,
+    content = models.TextField(
         null=False, blank=False,
     )
-    short_content = models.CharField(
-        max_length=200,
+    short_content = models.TextField(
         null=False, blank=False,
     )
     date = models.DateField(

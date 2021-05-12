@@ -25,7 +25,7 @@
             <h4 class="mb-0">{{ article.title }}</h4>
             <div class="mb-1 text-muted">{{ article.date }}</div>
             <p class="card-text mb-auto">{{ article.short_content }}</p>
-            <a href="#" class="stretched-link">أكمل القراءة</a>
+            <a href="/article/{{ article.id }}/" class="stretched-link">أكمل القراءة</a>
           </div>
           <div class="col-auto d-none d-lg-block">
               <img src="{{ article.image.url }}" class="bd-placeholder-img" width="200" height="250" />
