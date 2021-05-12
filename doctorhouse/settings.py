@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # additional required apps'
     # 'django.contrib.staticfiles',
     'jquery',
+    'fontawesome-free',
     'bootstrap4',
 
     # DoctorHouse apps

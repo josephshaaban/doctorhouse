@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load bootstrap4 %}
+{% load static %}
 {% if 'use_i18n'|bootstrap_setting %}
     {% load i18n %}
     {% get_current_language as LANGUAGE_CODE %}
@@ -14,6 +15,8 @@
 
     <!-- Page title -->
     <title>{% block bootstrap4_title %}django-bootstrap4 template title{% endblock %}</title>
+    <script src="{% static 'fontawesome_free/js/all.min.js' %}"></script>
+      <link href="{% static 'fontawesome_free/css/all.min.css' %}" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap CSS -->
     {% bootstrap_css %}

@@ -22,10 +22,13 @@
         <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
           <div class="col p-4 d-flex flex-column position-static">
             {% comment %}<strong class="d-inline-block mb-2 text-primary">{{ title }}</strong>{% endcomment %}
-            <h4 class="mb-0">{{ article.title }}</h4>
-            <div class="mb-1 text-muted">{{ article.date }}</div>
+            <h5 class="mb-0">{{ article.title }}</h5>
+            <div class="mb-1 text-muted">{{ article.date }}<br>
+             <i class="fa fa-eye fa-xs" aria-hidden="true"></i>{{article.visit_count}}
+            </div>
             <p class="card-text mb-auto">{{ article.short_content }}</p>
             <a href="/article/{{ article.id }}/" class="stretched-link">أكمل القراءة</a>
+
           </div>
           <div class="col-auto d-none d-lg-block">
               <img src="{{ article.image.url }}" class="bd-placeholder-img" width="200" height="250" />
