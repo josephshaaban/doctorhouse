@@ -3,36 +3,41 @@
 {% block content %}
 
 {% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
+<div class="alert alert-danger" role="alert">
+  Your username and password didn't match. Please try again.
+</div>
 {% endif %}
 
 {% if next %}
   {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
+    <div class="alert alert-danger" role="alert">
+ Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.
+</div>
   {% else %}
-    <p>Please login to see this page, using NT user account.</p>
+       <div class="alert alert-warning" role="alert">
+Please login to see this page, using NT user account.
+</div>
   {% endif %}
 {% endif %}
+<div class="container" style="width:40%;">
+
 
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
-
-<div>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
+<div class="form-group form-group-md">
+   <label for="id_username">{{ form.username.label_tag }}</label>
+  <input type="text" class="form-control" id="id_username" aria-describedby="emailHelp" placeholder="Enter email" name="username" required>
 </div>
-<div>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
+<div class="form-group form-group-md">
+  <label for="id_password">{{ form.password.label_tag }}</label>
+  <input type="password" class="form-control" id="id_password" placeholder="Password" name="password" required>
+<!--  <td>{{ form.password }}</td>-->
 </div>
-
-<div>
-  <input type="submit" value="login" />
+<button type="submit" class="btn btn-primary">تسجيل الدخول</button>
   <input type="hidden" name="next" value="{{ next }}" />
-</div>
 </form>
-
+</div>
 {# Assumes you setup the password_reset view in your URLconf #}
 {# <p><a href="{% url 'password_reset' %}">Lost password?</a></p> #}
 
