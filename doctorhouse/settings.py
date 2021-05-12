@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'jquery',
     'fontawesome-free',
     'bootstrap4',
+    'phonenumber_field',
 
     # DoctorHouse apps
     'heart_clinic',
