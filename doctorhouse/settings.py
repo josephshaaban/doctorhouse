@@ -39,8 +39,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # additional required apps'
+    # 'django.contrib.staticfiles',
+    'jquery',
+    'bootstrap4',
+
     # DoctorHouse apps
-    'heart_clinic'
+    'heart_clinic',
 ]
 
 MIDDLEWARE = [
@@ -60,6 +65,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'doctorhouse', 'templates'),
+            os.path.join(BASE_DIR, 'heart_clinic', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -109,7 +115,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ar-AE'
 
 TIME_ZONE = 'UTC'
 
@@ -128,3 +134,10 @@ STATIC_URL = '/static/'
 LOGIN_REDIRECT_URL = '/'
 # LOGIN_URL = 'login'
 # LOGOUT_URL = 'logout'
+
+BOOTSTRAP4 = {'include_jquery': True}
+
+# STATICFILES_DIRS =[os.path.join(BASE_DIR, 'static'),]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+MEDIA_URL = '/media/'
