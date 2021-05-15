@@ -4,6 +4,18 @@
 <form action="/heart_clinic/" method="post">
     {% csrf_token %}
     {{ form }}
+    <button class='js-captcha-refresh'>Refresh captcha</button>
     <input type="submit" value="Submit">
 </form>
+<script>
+    $('.js-captcha-refresh').click(function(){
+        $form = $(this).parents('form');
+
+        $.getJSON($(this).data('url'), {}, function(json) {
+            // This should update your captcha image src and captcha hidden input
+        });
+
+        return false;
+    });
+</script>
 {% endblock %}
