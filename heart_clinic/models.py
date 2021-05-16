@@ -49,9 +49,11 @@ class HeartConsultation(models.Model):
         (True, _('male')),
         (False, _('female')),
     ))
-    medical_history = models.CharField(
-        max_length=2000,
+    medical_history = models.TextField(
+        verbose_name=_('Medical history'),
+        null=False, blank=False,
     )
-    consultation_description = models.CharField(
-        max_length=2000,
+    consultation_description = models.TextField(
+        verbose_name=_('Consultation description'),
+        null=False, blank=False,
     )
