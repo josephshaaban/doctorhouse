@@ -1,11 +1,11 @@
 # ID3 (Iterative Dichotomiser 3) Algorithm implementation from scratch
+# see https://guillermoarriadevoe.com/blog/building-a-id3-decision-tree-classifier-with-python
 
-import math
 
 import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+# from sklearn.metrics import accuracy_score
 
 
 class GadId3Classifier:
