@@ -1,5 +1,8 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from phonenumber_field.modelfields import PhoneNumberField
 
 
 class Article(models.Model):
@@ -30,3 +33,25 @@ class Article(models.Model):
         default=0, null=False, blank=False,
     )
     image = models.ImageField(upload_to='article_images')
+
+
+class HeartConsultation(models.Model):
+    class Meta:
+        verbose_name = _('Heart consultation')
+        verbose_name_plural = _('Heart consultations')
+
+    full_name = models.CharField(verbose_name=_('Full name'), max_length=100)
+    email = models.EmailField()
+    consultation_title = models.CharField(verbose_name=_('Consultation title'), max_length=100)
+    phone_number = PhoneNumberField()
+    age = models.IntegerField(validators=[MaxValueValidator(150), MinValueValidator(1)])
+    gender = models.BooleanField(choices=(
+        (True, _('male')),
+        (False, _('female')),
+    ))
+    medical_history = models.CharField(
+        max_length=2000,
+    )
+    consultation_description = models.CharField(
+        max_length=2000,
+    )

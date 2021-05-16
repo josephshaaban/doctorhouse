@@ -1,6 +1,11 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  {{ form.errors }}
+</div>
+{% endif %}
 <form action="/heart_clinic/" method="post" style='width: 40%;'>
     {% csrf_token %}
     <div class="form-group form-group-md">
@@ -27,8 +32,8 @@
     <div class="form-group form-group-md">
         <label for="id_gender">{{ form.gender.label_tag }}</label>
         <select name="gender" id="id_gender" class="form-control" placeholder="Enter gender">
-            <option value="0">male</option>
-            <option value="1">female</option>
+            <option value="True">male</option>
+            <option value="False">female</option>
         </select>
     </div>
     <div class="form-group form-group-md">
