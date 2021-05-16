@@ -1,4 +1,4 @@
-from captcha.fields import CaptchaField
+from captcha.fields import CaptchaField, CaptchaTextInput
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from phonenumber_field.formfields import PhoneNumberField
@@ -22,6 +22,7 @@ class HeartConsultation(forms.Form):
         max_length=2000,
         min_length=100,
     )
-    captcha = CaptchaField()
-    # todo: use captcha
-
+    captcha = CaptchaField(widget=CaptchaTextInput(attrs={
+        'class': 'form-control',
+        'placeholder': "Enter captcha",
+    }))

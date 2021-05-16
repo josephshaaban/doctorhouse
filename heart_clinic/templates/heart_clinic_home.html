@@ -1,14 +1,55 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<form action="/heart_clinic/" method="post">
+<form action="/heart_clinic/" method="post" style='width: 40%;'>
     {% csrf_token %}
-    {{ form }}
-    <button class='js-captcha-refresh'>Refresh captcha</button>
-    <input type="submit" value="Submit">
+    <div class="form-group form-group-md">
+        <label for="id_full_namee">{{ form.full_name.label_tag }}</label>
+        <input type="text" class="form-control" id="id_full_name" placeholder="Enter full name" name="full_name" required>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_email">{{ form.email.label_tag }}</label>
+        <input type="email" class="form-control" id="id_email" aria-describedby="emailHelp" placeholder="Enter email" name="email" required>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_consultation_title">{{ form.consultation_title.label_tag }}</label>
+        <input type="text" class="form-control" id="id_consultation_title" placeholder="Enter consultation title" name="consultation_title" required>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_phone_number">{{ form.phone_number.label_tag }}</label>
+        <input type="tele" class="form-control" id="id_phone_number"  placeholder="Enter phone number" name="phone_number" required>
+    </div>
+
+    <div class="form-group form-group-md">
+        <label for="id_age">{{ form.age.label_tag }}</label>
+        <input type="number" class="form-control" id="id_age" placeholder="Enter age" name="age" required>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_gender">{{ form.gender.label_tag }}</label>
+        <select name="gender" id="id_gender" class="form-control" placeholder="Enter gender">
+            <option value="0">male</option>
+            <option value="1">female</option>
+        </select>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_medical_history">{{ form.medical_history.label_tag }}</label>
+        <textarea type="text" rows="10" class="form-control" id="id_medical_history" placeholder="Enter medical history" name="medical_history" required></textarea>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_consultation_description">{{ form.consultation_description.label_tag }}</label>
+        <textarea type="text" rows="10" class="form-control" id="id_consultation_description" placeholder="Enter consultation description" name="consultation_description" required></textarea>
+    </div>
+    <div class="form-group form-group-md">
+        <label for="id_captcha_1">{{ form.captcha.label_tag }}</label>
+        {{ form.captcha }}
+    </div>
+    <div class="form-group form-group-md">
+        <button class='js-captcha-refresh form-control btn btn-outline-primary'>Refresh captcha</button>
+    </div>
+    <input type="submit" value="Submit" class="form-control btn btn-primary">
 </form>
 <script>
-    $('.js-captcha-refresh').click(function(){
+    {% comment %} $('.js-captcha-refresh').click(function(){
         $form = $(this).parents('form');
 
         $.getJSON($(this).data('url'), {}, function(json) {
@@ -16,6 +57,12 @@
         });
 
         return false;
+    }); {% endcomment %}
+    $('.js-captcha-refresh').click(function () {
+        $.getJSON("/captcha/refresh/", function (result) {
+            $('.captcha').attr('src', result['image_url']);
+            $('#id_captcha_0').val(result['key'])
+        });
     });
 </script>
 {% endblock %}
