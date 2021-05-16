@@ -151,3 +151,12 @@ MEDIA_URL = '/media/'
 LOCALE_PATHS = [
     os.path.join(BASE_DIR, 'locale/'),
 ]
+
+# gmail_send/settings.py
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'youssef.shaaban.995@gmail.com'
+EMAIL_HOST_PASSWORD = 'asdf1234qwe'     #past the key or password app here
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'default from email'

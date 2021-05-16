@@ -1,0 +1,13 @@
+{% extends "admin/change_form.html" %}
+
+{% block content %}
+    <form id='send-email-form' action="{% url 'send-email' pk=original.id %}" method="POST" class="module aligned">
+          {% csrf_token %}
+           <div class="form-row field-email-response">
+              <label for="id_response" class="required">الرد على الاستشارة:</label>
+              <textarea type="text" cols="40" rows="10" class="vLargeTextField" id="id_response" placeholder="Enter response email" name="response" required></textarea>
+              <input type="submit" value="Send Email" name="response-form" form="send-email-form">
+          </div>
+    </form>
+    {{ block.super }}
+{% endblock %}

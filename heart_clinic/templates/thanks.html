@@ -1,5 +1,10 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <strong>Thanks for your response {{ y_pred }}</strong>
+<div class="jumbotron text-center">
+  <h1 class="display-3" dir="ltr">Thank You!</h1>
+    {% if y_pred %}
+        <strong>Your result from our Heart Consultation System is {{ y_pred }}</strong>
+    {% endif %}
+</div>
 {% endblock %}

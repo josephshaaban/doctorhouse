@@ -1,13 +1,17 @@
+from django.contrib import messages
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-from django.shortcuts import render
+from django.core.mail import send_mail
+from django.shortcuts import render, get_object_or_404
 
 from django.http import HttpResponse, HttpResponseRedirect
 
 from django.shortcuts import render
+from django.views import View
 
+from doctorhouse import settings
 from heart_clinic.forms import HeartConsultationForm, HeartConsultationSystemForm
 from heart_clinic.helpers.id3 import calculate
-from heart_clinic.models import Article
+from heart_clinic.models import Article, HeartConsultation
 
 import pandas as pd
 
@@ -56,6 +60,27 @@ def heart_clinic(request):
         form=form,
     )
     return render(request, 'heart_clinic_home.html', context=context)
+
+
+class SendEmail(View):
+    def post(self, request, *args, **kwargs):
+        consultation = get_object_or_404(HeartConsultation, pk=self.kwargs['pk'])
+        response_email = {
+            'subject': 'Heart Consultation response',
+            'body': f"Dear {consultation.full_name},\n\n{request.POST['response']}\n\nThanks!",
+            'from': 'youssef.shaaban.995@gmail.com',
+            'recipient_list': [consultation.email],
+        }
+
+        send_mail(
+            response_email['subject'],
+            response_email['body'],
+            settings.EMAIL_HOST_USER,
+            response_email['recipient_list'],
+            fail_silently=False
+        )
+        messages.add_message(request, messages.INFO, 'The email sent successfully!')
+        return HttpResponseRedirect(self.request.META['HTTP_REFERER'])
 
 
 def thanks(request):

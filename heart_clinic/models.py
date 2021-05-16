@@ -34,6 +34,9 @@ class Article(models.Model):
     )
     image = models.ImageField(upload_to='article_images')
 
+    def __str__(self):
+        return self.title
+
 
 class HeartConsultation(models.Model):
     class Meta:
@@ -62,6 +65,9 @@ class HeartConsultation(models.Model):
         verbose_name=_('Consultation description'),
         null=False, blank=False,
     )
+
+    def __str__(self):
+        return self.full_name
 
 
 class HeartConsultationSystem(models.Model):

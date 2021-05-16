@@ -14,6 +14,8 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(HeartConsultation)
 class HeartConsultationAdmin(admin.ModelAdmin):
     """ Admin class for HeartConsultation model """
+    change_form_template = 'heart_clinic/admin/change_form.html'
+
     list_display = [
         'full_name', 'consultation_title'
     ]
