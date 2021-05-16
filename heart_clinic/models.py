@@ -72,10 +72,12 @@ class HeartConsultationSystem(models.Model):
     age = models.IntegerField(
         verbose_name=_('Age'),
         validators=[MaxValueValidator(150), MinValueValidator(1)],
+        null=False, blank=False,
     )
     chest_pain_type = models.CharField(
         verbose_name=_('Chest pain type'),
         max_length=32,
+        null=False, blank=False,
         choices=(
             ('asympt', _('Asymptote')),
             ('atyp_angina', _('A typ angina')),
@@ -84,11 +86,13 @@ class HeartConsultationSystem(models.Model):
         ))
     rest_blood_pressure = models.IntegerField(
         verbose_name=_('Rest blood pressure'),
+        null=False, blank=False,
         validators=[MaxValueValidator(250), MinValueValidator(30)],
     )
     blood_sugar = models.CharField(
         verbose_name=_('Blood sugar'),
         max_length=32,
+        null=False, blank=False,
         choices=(
             ('FALSE', _('False')),
             ('True', _('True')),
@@ -96,6 +100,7 @@ class HeartConsultationSystem(models.Model):
     rest_electro = models.CharField(
         verbose_name=_('Rest electro'),
         max_length=32,
+        null=False, blank=False,
         choices=(
             ('normal', _('Normal')),
             ('left_vent_hyper', _('Left vent hyper')),
@@ -103,11 +108,13 @@ class HeartConsultationSystem(models.Model):
         ))
     max_heart_rate = models.IntegerField(
         verbose_name=_('Max heart rate'),
+        null=False, blank=False,
         validators=[MaxValueValidator(250), MinValueValidator(30)],
     )
     exercice_angina = models.CharField(
         verbose_name=_('Exercice angina'),
         max_length=32,
+        null=False, blank=False,
         choices=(
             ('yes', _('Yes')),
             ('no', _('No')),

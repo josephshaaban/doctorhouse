@@ -6,10 +6,10 @@
   {{ form.errors }}
 </div>
 {% endif %}
-<form action="/heart_clinic/" method="post" style='width: 40%;'>
+<form action="/heart_clinic/" method="post" class="container" style='width: 40%;'>
     {% csrf_token %}
     <div class="form-group form-group-md">
-        <label for="id_full_namee">{{ form.full_name.label_tag }}</label>
+        <label for="id_full_name">{{ form.full_name.label_tag }}</label>
         <input type="text" class="form-control" id="id_full_name" placeholder="Enter full name" name="full_name" required>
     </div>
     <div class="form-group form-group-md">

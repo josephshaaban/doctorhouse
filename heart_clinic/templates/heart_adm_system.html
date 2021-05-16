@@ -1,0 +1,42 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+{% if form.errors %}
+<div class="alert alert-danger" role="alert">
+  {{ form.errors }}
+</div>
+{% endif %}
+<form action="/heart_adm_system/" method="post" class="container" style='width: 40%;'>
+    {% csrf_token %}
+    <div class="form-group form-group-md">
+        {{ form.age.label_tag }}
+        {{ form.age }}
+    </div>
+    <div class="form-group form-group-md">
+        {{ form.chest_pain_type.label_tag }}
+        {{ form.chest_pain_type }}
+    </div>
+    <div class="form-group form-group-md">
+        {{ form.rest_blood_pressure.label_tag }}
+        {{ form.rest_blood_pressure }}
+    </div>
+    <div class="form-group form-group-md">
+        {{ form.blood_sugar.label_tag }}
+        {{ form.blood_sugar }}
+    </div>
+    <div class="form-group form-group-md">
+        {{ form.rest_electro.label_tag }}
+        {{ form.rest_electro }}
+    </div>
+    <div class="form-group form-group-md">
+        {{ form.max_heart_rate.label_tag }}
+        {{ form.max_heart_rate }}
+    </div>
+    <div class="form-group form-group-md">
+        {{ form.exercice_angina.label_tag }}
+        {{ form.exercice_angina }}
+    </div>
+
+    <input type="submit" value="Submit" class="form-control btn btn-primary">
+</form>
+{% endblock %}

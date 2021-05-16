@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from heart_clinic.models import Article, HeartConsultation
+from heart_clinic.models import Article, HeartConsultation, HeartConsultationSystem
 
 
 @admin.register(Article)
@@ -17,3 +17,8 @@ class HeartConsultationAdmin(admin.ModelAdmin):
     list_display = [
         'full_name', 'consultation_title'
     ]
+
+
+@admin.register(HeartConsultationSystem)
+class HeartConsultationSystemAdmin(admin.ModelAdmin):
+    """ Admin class for HeartConsultationSystem model """

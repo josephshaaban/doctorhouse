@@ -5,8 +5,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 from django.shortcuts import render
 
-from heart_clinic.forms import HeartConsultationForm
+from heart_clinic.forms import HeartConsultationForm, HeartConsultationSystemForm
+from heart_clinic.helpers.id3 import calculate
 from heart_clinic.models import Article
+
+import pandas as pd
 
 
 def index(request):
@@ -59,3 +62,40 @@ def thanks(request):
     context = dict(
     )
     return render(request, 'thanks.html', context=context)
+
+
+def heart_adm_system(request):
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = HeartConsultationSystemForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            # process the data in form.cleaned_data as required
+            # ...
+            # redirect to a new URL:
+            data = list(form.cleaned_data.values())
+            data = [data]
+            df = pd.DataFrame(
+                data=data,
+                columns=form.cleaned_data.keys()
+            )
+            y_pred = calculate(excel_file='heart_disease_male.xls', test_data=df)[0]
+
+            consultation = form.save(commit=False)
+            consultation.disease = y_pred
+            consultation.save()
+
+            context = dict(
+                y_pred=y_pred,
+            )
+            return render(request, 'thanks.html', context=context)
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = HeartConsultationSystemForm()
+
+    context = dict(
+        form=form,
+    )
+    return render(request, 'heart_adm_system.html', context=context)
