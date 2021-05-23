@@ -6,7 +6,7 @@
   {{ form.errors }}
 </div>
 {% endif %}
-<form action="/heart_adm_system/" method="post" class="container" style='width: 40%;'>
+<form action="{% url 'heart_adm_system' %}" method="post" class="container" style='width: 40%;'>
     {% csrf_token %}
     <div class="form-group form-group-md">
         {{ form.age.label_tag }}
@@ -37,6 +37,7 @@
         {{ form.exercice_angina }}
     </div>
 
-    <input type="submit" value="Submit" class="form-control btn btn-primary">
+    <input type="submit" value="Predict with ID3" formaction="{% url 'heart_adm_system' %}" class="form-control btn btn-primary mb-4">
+    <input type="submit" value="Predict with Bayes" formaction="{% url 'heart_adm_system_bayes' %}" class="form-control btn btn-primary mb-4">
 </form>
 {% endblock %}

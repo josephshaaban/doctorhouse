@@ -10,7 +10,8 @@ from django.views import View
 
 from doctorhouse import settings
 from heart_clinic.forms import HeartConsultationForm, HeartConsultationSystemForm
-from heart_clinic.helpers.id3 import calculate
+from heart_clinic.helpers.id3 import calculate as id3_calc
+from heart_clinic.helpers.bayes import calculate as bayes_calc
 from heart_clinic.models import Article, HeartConsultation
 
 import pandas as pd
@@ -89,7 +90,9 @@ def thanks(request):
     return render(request, 'thanks.html', context=context)
 
 
-def heart_adm_system(request):
+def heart_adm_system(request, **kwargs):
+    method = kwargs.get('method', 'id3')
+
     # if this is a POST request we need to process the form data
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
@@ -105,7 +108,11 @@ def heart_adm_system(request):
                 data=data,
                 columns=form.cleaned_data.keys()
             )
-            y_pred = calculate(excel_file='heart_disease_male.xls', test_data=df)[0]
+
+            if method == 'bayes':
+                y_pred = bayes_calc(excel_file='heart_disease_male.xls', test_data=df)[0]
+            else:
+                y_pred = id3_calc(excel_file='heart_disease_male.xls', test_data=df)[0]
 
             consultation = form.save(commit=False)
             consultation.disease = y_pred

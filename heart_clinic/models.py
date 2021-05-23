@@ -101,7 +101,7 @@ class HeartConsultationSystem(models.Model):
         null=False, blank=False,
         choices=(
             ('FALSE', _('False')),
-            ('True', _('True')),
+            ('TRUE', _('True')),
         ))
     rest_electro = models.CharField(
         verbose_name=_('Rest electro'),
